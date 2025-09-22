@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input {
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+    input:focus {
+      border-color: #4facfe;
+      outline: none;
+      box-shadow: 0 0 8px rgba(79,172,254,0.5);
+    }
+    button {
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color: white;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #38f9d7, #43e97b);
+      transform: scale(1.05);
+    }
+    .error {
+      color: #e74c3c;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .success {
+      color: #2ecc71;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    a {
+      color: #4facfe;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🔑 Login with OTP</h2>
+    <form method="POST">
+      <input type="text" name="mobile" placeholder="Enter Mobile Number" value="{{mobile or ''}}" required><br>
+      <button type="submit">Get OTP</button>
+    </form>
+
+    {% if otp_sent %}
+    <form method="POST" action="/verify">
+      <input type="text" name="otp" placeholder="Enter OTP" required><br>
+      <button type="submit">Verify OTP</button>
+    </form>
+
+    <!-- ✅ Success message with masked number -->
+    <p class="success">
+      ✅ OTP has been sent to your registered number ******{{ mobile[-2:] }}
+    </p>
+    {% endif %}
+
+    {% if error %}<p class="error">{{error}}</p>{% endif %}
+    <p>Not registered? <a href="/register">Register here</a></p>
+  </div>
+</body>
+</html>

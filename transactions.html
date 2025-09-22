@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transactions</title>
+  <style>
+    body { font-family: Arial; background: linear-gradient(120deg,#cfd9df,#e2ebf0); padding:50px; text-align:center; }
+    table { border-collapse: collapse; width:80%; margin:auto; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.3); border-radius:8px; overflow:hidden; }
+    th, td { padding:12px; border-bottom:1px solid #ddd; }
+    th { background:#007BFF; color:white; }
+    tr:hover { background:#f1f1f1; }
+    a { display:block; margin:20px auto; color:#007BFF; text-decoration:none; width:150px; }
+    a:hover { text-decoration:underline; }
+    h2 { margin-bottom:20px; }
+  </style>
+</head>
+<body>
+  <h2>Transaction History</h2>
+  <table>
+    <tr>
+      <th>Sender</th>
+      <th>Receiver</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Timestamp</th>
+    </tr>
+    {% for txn in txns %}
+    <tr>
+      <td>{{ txn[0] }}</td>
+      <td>{{ txn[1] }}</td>
+      <td>₹{{ txn[2] }}</td>
+      <td>{{ txn[3] }}</td>
+      <td>{{ txn[4] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <a href="/home">⬅ Back to Home</a>
+</body>
+</html>

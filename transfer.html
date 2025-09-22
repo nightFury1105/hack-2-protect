@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transfer</title>
+  <style>
+    body { font-family: Arial; background: linear-gradient(120deg,#d4fc79,#96e6a1); text-align:center; padding:50px; }
+    .card { background:white; padding:30px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3); display:inline-block; width:400px; }
+    input, button { padding:12px; margin:8px; width:90%; border-radius:8px; border:1px solid #ccc; font-size:16px; }
+    button { background:#007BFF; color:white; border:none; cursor:pointer; }
+    button:hover { background:#0056b3; }
+    .msg { margin-top:15px; font-weight:bold; color:green; }
+    .error { margin-top:15px; font-weight:bold; color:red; }
+    #receiver_name { font-weight:bold; margin:5px 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Transfer Money</h2>
+    <p>Current Balance: ₹<span id="current_balance">{{ user_balance }}</span></p>
+    <form method="POST">
+      <input type="text" id="receiver" name="receiver" placeholder="Receiver Mobile" required oninput="fetchReceiverName()"><br>
+      <div id="receiver_name"></div>
+      <input type="number" name="amount" placeholder="Amount" required><br>
+      <button type="submit">Transfer</button>
+    </form>
+
+    {% if msg %}
+      <p class="msg">{{ msg }}</p>
+    {% endif %}
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <a href="/home">⬅ Back to Home</a>
+  </div>
+
+<script>
+function fetchReceiverName() {
+  let mobile = document.getElementById("receiver").value;
+  if(mobile.length > 0){
+    fetch('/get_receiver_name?mobile=' + mobile)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("receiver_name").innerText = data.name ? "Receiver: " + data.name : "";
+    });
+  } else {
+    document.getElementById("receiver_name").innerText = "";
+  }
+}
+</script>
+</body>
+</html>

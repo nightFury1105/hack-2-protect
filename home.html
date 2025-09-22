@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            text-align: center;
+            padding: 50px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .button {
+            display: block;
+            margin: 15px auto;  /* Space between buttons */
+            text-decoration: none;
+            color: white;
+            background: #007BFF;
+            padding: 12px 0;
+            border-radius: 10px;
+            width: 220px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Welcome, {{user[0]}}!</h2>
+        <p>Mobile: {{user[1]}}</p>
+        <p>Balance: ₹{{'%.2f' % user[2]}}</p>
+        <a class="button" href="/transfer">💸 Transfer Money</a>
+        <a class="button" href="/transactions">📜 View Transactions</a>
+        <a class="button" href="/profile">👤 Profile</a>
+        <a class="button" href="/logout">🚪 Logout</a>
+    </div>
+</body>
+</html>

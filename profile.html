@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <style>
+        body { font-family: Arial; background: linear-gradient(120deg,#89f7fe,#66a6ff); text-align:center; padding:50px; }
+        .card { background:white; padding:30px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.3); display:inline-block; }
+        a { display:block; margin:10px 0; text-decoration:none; color:white; background:#007BFF; padding:10px; border-radius:8px; width:200px; margin:auto; }
+        a:hover { background:#0056b3; }
+        h2 { margin-bottom:20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Profile</h2>
+        <p><strong>Name:</strong> {{user[0]}}</p>
+        <p><strong>Mobile:</strong> {{user[1]}}</p>
+        <p><strong>Balance:</strong> ₹{{'%.2f' % user[2]}}</p>
+        <a href="/home">⬅ Back to Home</a>
+    </div>
+</body>
+</html>
